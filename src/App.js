@@ -10,8 +10,6 @@ state = {
   bidenized: ''
 }
 
-
-
 handleOnChange = (e) => {
   console.log(e.target.value)
   this.setState({form: e.target.value})
@@ -31,7 +29,7 @@ handleOnSubmit = (e) => {
  bidenize = string => {
   const pronouns = ['he','him','she','her','his','hers','I','you','it','they','my','mine','your','yours', 'we']
   const malaprops = ['Corn Pop, ','Hey mack, ','Look here, fat, ', 'Hey, man, ','My son Beau... ', "Don’t play games with me, kid, "]
-  const endings = ["... that's a story, man!", "...come on, man!", "... and we MUST DEFEAT DONALD TRUMP!", 
+  const endings = ["... that's a story, man!", "... come on, man!", "... and we MUST DEFEAT DONALD TRUMP!", 
   "... my name’s Joe Biden. I’m a Democratic candidate for the United States Senate!"]
   const gaffeList = ["anybody who can throw coal into a furnace can learn how to program for god's sake,", 
   "go to Joe 3-0-3-3-0", "by the way, this is my little sister Valerie! And I’m Jill’s husband.", 
@@ -44,17 +42,20 @@ handleOnSubmit = (e) => {
 
 
       const stutter = word => {
+        // --- adds stutter to selected word ---
           let thisWord = word.split('')
           thisWord.unshift(`${thisWord[0]}-${thisWord[0]}-`)
           return thisWord.join('')
       }
 
       const randomItem = (array) => {
+        // --- selects random item from given array ---
         console.log(array)
         return array[Math.floor(Math.random() * array.length)]
       }
 
       const pronounSwitch = word => {
+        // --- every so often, switch pronouns --- 
         let number = Math.floor((Math.random() * 10) + 1);
         return number >= 8 ? randomItem(pronouns) : word
       }
