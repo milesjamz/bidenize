@@ -1,38 +1,22 @@
-.App {
+html {
+  background-image: url(BIDENBABY.JPG);
+}
+.bidenForm {
+  background-color: linen;
   text-align: center;
+  width:80vw;
+  margin-left:5%;
+  font-family: arial;
+  margin-top:10%;
+  border: solid grey;
+  /* box-shadow: olive 10px 10px ; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#arrow {
+  color:red;
+  text-decoration: orangered;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#charsLeft {
+  font-size: x-small;
 }
