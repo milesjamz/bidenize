@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import Cornpop from './cornpop.mp3'
 // import Bidenize from './bidenize'
 
 class App extends React.Component {
