@@ -18,6 +18,10 @@ handleOnChange = (e) => {
 handleOnSubmit = (e) => {
   const bidenSounds = ['./cornpop.mp3','./badboys.mp3']
   e.preventDefault()
+ if (e.target.input.value.length === 0 ){ 
+   alert('Please, enter a phrase to Bidenize!');
+   return 'end'
+ }
   console.log(e.target.input.value)
   let result = this.bidenize(e.target.input.value)
   console.log(result)
@@ -89,7 +93,6 @@ this.setState({ musicPlaying: !this.state.musicPlaying })
     }
   } else {
     try {
-      console.log('im fucking gay')
     this.pEyes.pause()
     this.setState({ musicPlaying: !this.state.musicPlaying })
     } catch (e) {
