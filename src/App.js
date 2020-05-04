@@ -6,7 +6,8 @@ class App extends React.Component {
 
 state = {
   form: '',
-  bidenized: ''
+  bidenized: '',
+  musicPlaying: false
 }
 
 handleOnChange = (e) => {
@@ -24,6 +25,9 @@ handleOnSubmit = (e) => {
   let jeez = new Audio(bidenSounds[Math.floor(Math.random() * bidenSounds.length)])
   jeez.play()
 }
+
+
+ pEyes = new Audio('./PrivateEyes.mp3')
 
  bidenize = string => {
   const pronouns = ['he','him','she','her','his','hers','I','you','it','they','my','mine','your','yours', 'we']
@@ -75,11 +79,24 @@ handleOnSubmit = (e) => {
 }
 
 playJamz = () => {
-let pEyes = new Audio('./PrivateEyes.mp3')
-console.log(pEyes)
-pEyes.play()
+// console.log(this.state)
+if (this.state.musicPlaying === false) {
+try {
+this.pEyes.play()
+this.setState({ musicPlaying: !this.state.musicPlaying })
+} catch (e) {
+  console.log(e)
+    }
+  } else {
+    try {
+      console.log('im fucking gay')
+    this.pEyes.pause()
+    this.setState({ musicPlaying: !this.state.musicPlaying })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 }
-
 
 render() {
 
@@ -94,7 +111,7 @@ const heresTheBidenism = () => {
   return (
     <div className="bidenForm">
       <h2>- / = b i d e n i z e = \ -</h2>
-      <button onClick={this.playJamz}>Play our theme song, "Bidenize"</button><br/>
+      <button onClick={this.playJamz}>{this.state.musicPlaying === false ? 'Play' : 'Pause'} our theme song, "Bidenize"</button><br/>
       please enter a phrase to bidenize:
     <form onSubmit={this.handleOnSubmit}>
     <input  type='text'
