@@ -80,6 +80,16 @@ handleOnSubmit = (e) => {
         return number >= 8 ? randomItem(pronouns) : word
       }
 
+      const confuseTheNumbers = (number, chance) => {
+        let diceRoll = Math.floor((Math.random() * 10) + 1);
+        console.log('confuse the numbers rolled ' + diceRoll)
+        if (diceRoll >= chance) {
+        number = number * Math.ceil(Math.random() * 10)
+        return number
+      } else {
+        return number
+      }
+    }
   // let numberCount = 
   let myBidenism = string.split(' ')
   // --- for short quips, do the following ---
@@ -87,7 +97,7 @@ handleOnSubmit = (e) => {
       myBidenism[0].toLowerCase() !== 'i' ? 
       myBidenism[0] = myBidenism[0].toLowerCase() : myBidenism[0] = 'I'
       myBidenism = myBidenism.map(word => pronouns.includes(word.toLowerCase()) ? pronounSwitch(word) : word )
-      myBidenism = myBidenism.map(word => word.match(/\d/g) ? word = word * Math.ceil(Math.random() * 10) : word)
+      myBidenism = myBidenism.map(word => word.match(/\d/g) ?  confuseTheNumbers(word, 8) : word)
       // myBidenism.splice(Math.floor(Math.random() * myBidenism.length), 0, randomItem(gaffeList))
       let lastWord = myBidenism[myBidenism.length-1]
       let finishedIsm = randomItem(malaprops, 2) + myBidenism.slice(0,-1).join(' ') + " " + stutter(lastWord, 8) + randomItem(endings, 2);
