@@ -48,22 +48,35 @@ handleOnSubmit = (e) => {
   
 
 
-      const stutter = word => {
+      const stutter = (word, chance) => {
         // --- adds stutter to selected word ---
+        let number = Math.floor((Math.random() * 10) + 1);
+        console.log('stutter rolls ' + number)
+        if (number >= chance) {
           let thisWord = word.split('')
           thisWord.unshift(`${thisWord[0]}-${thisWord[0]}-`)
           return thisWord.join('')
+        } else {
+          return word
+        }
       }
 
-      const randomItem = (array) => {
+      const randomItem = (arrayName, chance) => {
         // --- selects random item from given array ---
-        console.log(array)
-        return array[Math.floor(Math.random() * array.length)]
+        let number = Math.floor((Math.random() * 10) + 1);
+        console.log('random item ' + '(' + arrayName + ') rolls ' + number)
+        if (number >= chance) {
+        console.log(arrayName)
+        return arrayName[Math.floor(Math.random() * arrayName.length)]
+        } else {
+          return ''
+        }
       }
 
       const pronounSwitch = word => {
         // --- every so often, switch pronouns --- 
         let number = Math.floor((Math.random() * 10) + 1);
+        console.log('pronoun switch rolls ' + number)
         return number >= 8 ? randomItem(pronouns) : word
       }
 
@@ -71,13 +84,13 @@ handleOnSubmit = (e) => {
   let myBidenism = string.split(' ')
   // --- for short quips, do the following ---
   if (myBidenism.length <= 7 && myBidenism.length > 1) {
-      myBidenism[0][0].toLowerCase() !== 'i' ? 
-      myBidenism[0] = myBidenism[0].toLowerCase() : console.log('hehe')
+      myBidenism[0].toLowerCase() !== 'i' ? 
+      myBidenism[0] = myBidenism[0].toLowerCase() : myBidenism[0] = 'I'
       myBidenism = myBidenism.map(word => pronouns.includes(word.toLowerCase()) ? pronounSwitch(word) : word )
-      myBidenism = myBidenism.map(word => word.match(/\d/g) ? word = word * Math.floor(Math.random() * 10) + 1 : word)
-      myBidenism.splice(Math.floor(Math.random() * myBidenism.length), 0, randomItem(gaffeList))
+      myBidenism = myBidenism.map(word => word.match(/\d/g) ? word = word * Math.ceil(Math.random() * 10) : word)
+      // myBidenism.splice(Math.floor(Math.random() * myBidenism.length), 0, randomItem(gaffeList))
       let lastWord = myBidenism[myBidenism.length-1]
-      let finishedIsm = randomItem(malaprops) + myBidenism.slice(0,-1).join(' ') + " " + stutter(lastWord) + randomItem(endings);
+      let finishedIsm = randomItem(malaprops, 2) + myBidenism.slice(0,-1).join(' ') + " " + stutter(lastWord, 8) + randomItem(endings, 2);
       return finishedIsm
     }
 }
